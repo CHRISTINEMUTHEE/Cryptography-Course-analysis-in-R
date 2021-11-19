@@ -52,7 +52,8 @@ str(advert_df)
 ```
 My dataset has a thousand observations and 10 variables of numerical,integer character datatypes. There is also time stamp variable within the data.
 
-## 5.) Cleaning the dataset.
+## 6.) Cleaning the dataset.
+
 This will be aimed at identifying extreme values, anomalies within the set,missing values and duplicated values in the set.
 ### Changing the column names for easy readability
 ```{r}
@@ -138,10 +139,67 @@ print(length(unique(non_nums[[2]])))# We can see that some cities come in severa
 print(length(unique(non_nums[[3]]))) # There are 237 unique countries in this set. No anomalies detected on an outward
 ```
 ### Dealing with Outliers in the Area of income set
+```{r}
+# Checking the numbers outside the InterQuantile range
+boxplot.stats(advert_df$A_income)$out
+# Checking for legitimacy of the outliers by checking the maximum and the minimum
+print(max(advert_df$A_income))
+print(min(advert_df$A_income))
+# They wont be regarded as illegitimate data points as they are not too extreem 
+```
+### Checking for Duplicates
+```{r}
+# Checking for duplicated rows
+length(advert_df[duplicated(advert_df),])
+# There are 10 duplicated values in this set
+```
+### Dealign with duplicates
+```{r}
+clean_df<-advert_df[!duplicated(advert_df),]
+```
 
 
+### Checking for null values
+```{r}
+# Length which is null
+length(which(is.na.data.frame(clean_df)))
+# There are no missing values in the set
+```
+```{r}
+# Re-extracting null values from the clean data with no duplicates
+library("dplyr") 
+clean_nums_df<-select_if(clean_df,is.numeric)
 
-## Analysis
+clean_nums_df
+
+```
+
+## 7. Univariate Analysis
+### Measures of Central Tendacy
+```{r}
+# Numerical values
+head(clean_nums_df)
+# Mean of individual columns
+colMeans(clean_nums_df)
+# The vakues as valis especialy for the 0's and 1's columns the mean is approximately 0.5 giving us a clue of the distribution of the discrete values
+```
+### Histogram of the individual columns to see their distribution
+```{r}
+# For continous variables a histogram is paramount to display the distribution of values in the set while telling us the skewness and kurtosis of out data
+hist(nums_df$Age)
+
+```
+```{r}
+hist(nums_df$Time_on_site)
+```
+```{r}
+hist(nums_df$A_income)
+```
+```{r}
+hist(nums_df$Internet_Usage)
+```
+
+
 
 
 
