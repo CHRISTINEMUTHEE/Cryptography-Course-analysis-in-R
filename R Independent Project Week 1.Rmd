@@ -30,6 +30,8 @@ The online cryptography course is a new field involved with ensuring secure comm
 This will involve exhaustive techniques to understand our data in and out. This will be done by finding and dealing with extreem values ,anomalies, missing values and duplicated values to ensure the data used is an actual representative of the actual observations. This will be followed by and exhaustive analysis of the attributes (variables) of the data.Using the inference borrowed from our analysis , we will obtain answers to our specific question while challenging the solution by providing how to make improvements to ensure optimum marketing is achieved.
 
 ## 5.) Dataset appropriateness for analysis 
+
+
 A brief review of the data to inform us what we are working with  and its importance for analysis. 
 ```{r}
 
@@ -41,7 +43,9 @@ advert_df<-fread("http://bit.ly/IPAdvertisingData")
 head(advert_df)
 
 ```
-Checking the structure of my dataset.
+
+
+### Checking the structure of my dataset.
 ```{r}
 # Reviewing the dimensions making my table
 dim(advert_df)
@@ -55,6 +59,8 @@ My dataset has a thousand observations and 10 variables of numerical,integer cha
 ## 6.) Cleaning the dataset.
 
 This will be aimed at identifying extreme values, anomalies within the set,missing values and duplicated values in the set.
+
+
 ### Changing the column names for easy readability
 ```{r}
 colnames(advert_df)
@@ -63,6 +69,8 @@ colnames(advert_df)
 colnames(advert_df)<-c("Time_on_site","Age","A_income","Internet_Usage","Ad_Topic","City","Male","Country","Timestamp","Clicked")
 
 ```
+
+
 ### a.) Numeric datatypes
 ```{r}
 # Identifying outliers in the numerical columns
@@ -80,6 +88,7 @@ nums_df
 colnames(advert_df)
 ```
 
+
 ### A function to check for outliers within the numerical values of the set
 ```{r}
 # Boxplot of the individual variables
@@ -87,37 +96,50 @@ box_plot<-function(data,var,main){
   boxplot(data[[var]],ylab="Distribution of values",main=main)
 }
 ```
+
+
 ### A boxplot of the daily time spent onsite to check for outliers
 ```{r}
 box_plot(nums_df,1,"A boxplot of Daily Time Spent on Site")
 # There are no outliers in the values in the daily time spent on the site  
 ```
 
+
 ### A boxplot of Age to check for outliers
 ```{r}
 box_plot(nums_df,2,"A boxplot of Age")
 # There are no outliers in the Age distribution
 ```
+
+
 ### A boxplot of income to check for outliers
 ```{r}
 box_plot(nums_df,3,"A boxplot of Area Income")
 # There are several outliers lying below the 25th percentile
 ```
+
+
 ### A box plot of Daily Internet Usage to check for outliers
 ```{r}
 box_plot(nums_df,4,"A boxplot of Daily Internet Usage")
 # There are no outliers in the daily internet usage values
 ```
+
+
 ### A boxplot to check for outliers on whether an individual is male or not
 ```{r}
 box_plot(nums_df,5,"A boxplot of Males")
 # There are no  anomalies nor outliers in the male column. Since values are either 0's or 1's for Yes and No respectively
 ```
+
+
 ### A boxplot of Clicked on Ad to check for outliers
 ```{r}
 box_plot(nums_df,6,"A boxplot of Clicked on Ads")
 # No anomaly nor outliers detected in this set
 ```
+
+
 ### Anomalies and Outliers in the Non-numeric columns.
 ```{r}
 
@@ -131,6 +153,8 @@ non_nums<-subset(advert_df,select = -c(Time_on_site,Age,A_income,Internet_Usage,
 ```{r}
 head(non_nums)
 ```
+
+
 ### Checking for unique values in each column
 
 ```{r}
@@ -138,6 +162,8 @@ print(length(unique(non_nums[[1]])))# There are alot of unique values in this se
 print(length(unique(non_nums[[2]])))# We can see that some cities come in several times as the unique values do not get to the total number of columns
 print(length(unique(non_nums[[3]]))) # There are 237 unique countries in this set. No anomalies detected on an outward
 ```
+
+
 ### Dealing with Outliers in the Area of income set
 ```{r}
 # Checking the numbers outside the InterQuantile range
@@ -175,31 +201,66 @@ clean_nums_df
 ```
 
 ## 7. Univariate Analysis
+
+
 ### Measures of Central Tendacy
 ```{r}
 # Numerical values
 head(clean_nums_df)
 # Mean of individual columns
 colMeans(clean_nums_df)
-# The vakues as valis especialy for the 0's and 1's columns the mean is approximately 0.5 giving us a clue of the distribution of the discrete values
+# The vakues as valis especialy for the 0's and 1's columns the mean is approximately 0.5 giving us a clue of the distribution of the discrete values.
 ```
+```{r}
+#A summary of everything in numerical set
+summary.data.frame(clean_nums_df)
+```
+
 ### Histogram of the individual columns to see their distribution
 ```{r}
 # For continous variables a histogram is paramount to display the distribution of values in the set while telling us the skewness and kurtosis of out data
-hist(nums_df$Age)
-
+hist(clean_nums_df$Age,xlab="Age",main="Distribution of age")
+# We can see from this that age of participants was mostly concentrated around 30 years. Its skewed  to the left giving us insight that most participants in this sampleset were in the mid 30's
 ```
 ```{r}
-hist(nums_df$Time_on_site)
+# Distribution of the time on sight
+hist(clean_nums_df$Time_on_site,xlab = "Time spent on site",main="The distribution of the time on site")
+# Frequency of Time spent is relatively high the 3rd quantile of the set. This tells us that a significantly large amount of time is spent on the site
 ```
 ```{r}
-hist(nums_df$A_income)
+# Distribution of area income
+hist(clean_nums_df$A_income,xlab="Area Income",main="This is the ditribution of the Area Income")
+# The Area income is skewed to the right, the tells us that the income is populated on the higher end with a low population with lower income
 ```
 ```{r}
-hist(nums_df$Internet_Usage)
+# Internet usage
+hist(clean_nums_df$Internet_Usage,xlab="Internet Usage",main="Distribution of Internet usage")
+# The distribution is relatively normal with the lower population on the higher end.  
 ```
+#### Disctere variables
+```{r}
+# Getting the values in the male variable
+males<-clean_nums_df$Male
+# Getting the frequency table of the male set
+male_dist<-table(males)
+# Plotting a bar plot to understand the distribution of discrete values in the males column
+barplot(male_dist,main = "The Ditribution of Males",xlab = "Males and Non males")
+# The non male which i would presume to be female were higher in count
+```
+```{r}
+# Getting the values in the clicks
+ad_clicks<-clean_nums_df$Clicked
+# Getting the frequency table of the clicks set
+ad_clicks_dist<-table(ad_clicks)
+# Plotting a bar plot to understand the distribution of discrete values in the clicks column
+barplot(ad_clicks_dist,main = "The Ditribution of Adclicks",xlab = "Yes and No")
+# The distribution was balanced.
+```
+## Bivariate and Multivariate Analysis
+```{r}
+barplot(male_dist,main = "The Ditribution of Males",xlab = "Males and Non males")
 
-
+```
 
 
 
