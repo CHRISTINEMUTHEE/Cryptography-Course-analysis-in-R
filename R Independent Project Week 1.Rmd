@@ -2,7 +2,9 @@
 title: "Cryptography course analysis"
 author: "Christine Muthee"
 date: "11/19/2021"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -11,15 +13,131 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Online Cryptography analysis
 
+### 1.Defining the Question.
+
+This research is meant to identify the specific individuals who are likely to click on an advertisement add.
+
+#### a.) Who is likely to click the online cryptography course advertisement?
 
 
-## Metrics of success
+## 2.) Metrics of success
+My success will be achieved by correctly identifying individuals that are likely to click into an add. This will be achieved by performing and in depth review of the data at hand to analyse factors influencing the advertisement clicks while assessing individual independent variables and their distribution within the set and their relationship with one another.
+
+## 3.) The context of analysis.
+The online cryptography course is a new field involved with ensuring secure communication between two individuals. This field though new, could improve information security. Using data collected from a former advertisement on a related course posted on a blog, we can get to view the recipient behavior of this advertisements so as to maximize on high priority recipients to ensure effective advertising and return on investment made in the business by not concentrating on low target potential customers.
+
+## 4.) Experimental design taken
+This will involve exhaustive techniques to understand our data in and out. This will be done by finding and dealing with extreem values ,anomalies, missing values and duplicated values to ensure the data used is an actual representative of the actual observations. This will be followed by and exhaustive analysis of the attributes (variables) of the data.Using the inference borrowed from our analysis , we will obtain answers to our specific question while challenging the solution by providing how to make improvements to ensure optimum marketing is achieved.
+
+## 5.) Dataset appropriateness for analysis 
+A brief review of the data to inform us what we are working with  and its importance for analysis. 
+```{r}
+
+# Loading our dataset.
+library(data.table)
+advert_df<-fread("http://bit.ly/IPAdvertisingData")
+
+# Checking the first 6 observations
+head(advert_df)
+
+```
+Checking the structure of my dataset.
+```{r}
+# Reviewing the dimensions making my table
+dim(advert_df)
+
+# Information about my datset
+str(advert_df)
+
+```
+My dataset has a thousand observations and 10 variables of numerical,integer character datatypes. There is also time stamp variable within the data.
+
+## 5.) Cleaning the dataset.
+This will be aimed at identifying extreme values, anomalies within the set,missing values and duplicated values in the set.
+### Changing the column names for easy readability
+```{r}
+colnames(advert_df)
+# Changing the column names for easy readability
+
+colnames(advert_df)<-c("Time_on_site","Age","A_income","Internet_Usage","Ad_Topic","City","Male","Country","Timestamp","Clicked")
+
+```
+### a.) Numeric datatypes
+```{r}
+# Identifying outliers in the numerical columns
+
+library("dplyr") 
+
+nums_df<-select_if(advert_df,is.numeric)
+
+nums_df
+
+``` 
+
+### Rechecking the column names
+```{r}
+colnames(advert_df)
+```
+
+### A function to check for outliers within the numerical values of the set
+```{r}
+# Boxplot of the individual variables
+box_plot<-function(data,var,main){
+  boxplot(data[[var]],ylab="Distribution of values",main=main)
+}
+```
+### A boxplot of the daily time spent onsite to check for outliers
+```{r}
+box_plot(nums_df,1,"A boxplot of Daily Time Spent on Site")
+# There are no outliers in the values in the daily time spent on the site  
+```
+
+### A boxplot of Age to check for outliers
+```{r}
+box_plot(nums_df,2,"A boxplot of Age")
+# There are no outliers in the Age distribution
+```
+### A boxplot of income to check for outliers
+```{r}
+box_plot(nums_df,3,"A boxplot of Area Income")
+# There are several outliers lying below the 25th percentile
+```
+### A box plot of Daily Internet Usage to check for outliers
+```{r}
+box_plot(nums_df,4,"A boxplot of Daily Internet Usage")
+# There are no outliers in the daily internet usage values
+```
+### A boxplot to check for outliers on whether an individual is male or not
+```{r}
+box_plot(nums_df,5,"A boxplot of Males")
+# There are no  anomalies nor outliers in the male column. Since values are either 0's or 1's for Yes and No respectively
+```
+### A boxplot of Clicked on Ad to check for outliers
+```{r}
+box_plot(nums_df,6,"A boxplot of Clicked on Ads")
+# No anomaly nor outliers detected in this set
+```
+### Anomalies and Outliers in the Non-numeric columns.
+```{r}
+
+Numerics<-noquote(names(nums_df))
+Numerics
+
+non_nums<-subset(advert_df,select = -c(Time_on_site,Age,A_income,Internet_Usage,Male,Clicked))
 
 
+```
+```{r}
+head(non_nums)
+```
+### Checking for unique values in each column
 
-
-## Loading Datasets
-
+```{r}
+print(length(unique(non_nums[[1]])))# There are alot of unique values in this set
+print(length(unique(non_nums[[2]])))# We can see that some cities come in several times as the unique values do not get to the total number of columns
+print(length(unique(non_nums[[3]]))) # There are 237 unique countries in this set. No anomalies detected on an outward
+```
+### Dealing with Outliers in the Area of income set
 
 
 
