@@ -7,10 +7,10 @@ Success of this analysis will be achieved by effectively identifying the high pr
 You need R markdown, R studio.
 # Set up Installations
 You need to install the R set up and the Rstudio as a developing environment.
-Details can eb found in the CRAN website
+Details can be found in the CRAN website
 clone this project from:https://github.com/CHRISTINEMUTHEE/Cryptography-Course-analysis-in-R.git
 # Technologies used
-R programming language
+R programming language, Html
 # Support and contact details
 Incase of any comments,concerns and inputs please reach me at:
 xtinemuthee@gmail.com 
