@@ -574,10 +574,264 @@ boxplot(Time_on_site~Clicked,data=clean_df,main = &quot;The Ditribution of Time 
 boxplot(Internet_Usage~Clicked,data=clean_df,main = &quot;The Ditribution of Internet usage and clicks&quot;,xlab = &quot;No and Yes&quot;)</code></pre>
 <p><img src="data:image/png;base64,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aYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAaYuADpWANkZAacuMwWpzrTe+xKYX2CQBpS19R4LD2lzrjS+x6QU2SUCB5ggoQCYBBcgkoACZBBQgk4ACZBJQgEwCCtTZUCIJKFBnQ4kkoECdDSWSgAJ1NpRIAgrU2VAiCShQZ0OJJKBAnQ0lkoACdTaUSAIK1NlQIgkoQCYBBcgkoACZBBQgk4ACZBJQgEwCCpBJQIE6G0okAQXqbCiRBBSos6FEElCgzoYSSUCBOhtKJAEF6mwokQQUqLOhRBJQoM6GEklAgTobSiQBBcgkoACZBBQgk4ACZBJQgEwCCpBJQAEyCShQZ0OJJKBAnQ0lkoACdTaUSAIK1NlQIgkoUGdDiSSgQJ0NJZKAAnU2lEgCCtTZUCIJKFBnQ4kkoACZBBQgk4ACZBJQgEwCCpBphAGdv//j7Ozst/cfMn5XQIHmjC2g757NSg9epf66gALNGVdAPz2e7brzS9oCBBQi2FAijSqgF8dFNO+frHxV/OXoadISvC4ggg0l0pgC+vnRIpjPKz94uwjqF/9MWYTXBUSwoUQaU0DP93JZJPVhyiK8LiCCDSXSiAI6/3E2q++wX8xmd1OOxntdQAQbSqQRBXTxdnNvfz30s6t4XUAEG0okAQXqbCiRRhTQxS78Uf2sJbvwTM3sNul7MG9sRAG9PN2rZfGx6L2URdyCNca09Z28ZvU9mjc2poB+PF4U9HXlB58W/dx7U3qlW7DGgMEYU0CL85gW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" width="672" /></p>
 <pre class="r"><code># Same as time on site, people with less internet usage are more likely to click into an add. There are however a few individuals who have a higher internet usage that still click into the add. The least likely individuals to click into an add use internet(units specified) between 200 and approximately 230.</code></pre>
+<pre class="r"><code># Finding the relationship between male and clicked
+my_table&lt;-with(clean_df,table(Clicked,Male))
+print(my_table)</code></pre>
+<pre><code>##        Male
+## Clicked   0   1
+##       0 250 250
+##       1 269 231</code></pre>
+<pre class="r"><code># From this we can see that the NON-MALE are more likely to click as compared to Male. For those who didnt click, the ratio is the same</code></pre>
+<pre class="r"><code># Dealing with yes clicks to see the countries that are most frequent
+yes_clicked&lt;-clean_df[clean_df$Clicked==1]
+# Checking the frequency of individual countries
+country_tbl&lt;-as.matrix(table(yes_clicked$Country))
+country_tbl</code></pre>
+<pre><code>##                                                     [,1]
+## Afghanistan                                            5
+## Albania                                                4
+## Algeria                                                3
+## American Samoa                                         3
+## Andorra                                                2
+## Angola                                                 1
+## Anguilla                                               3
+## Antarctica (the territory South of 60 deg S)           2
+## Antigua and Barbuda                                    4
+## Argentina                                              1
+## Armenia                                                1
+## Australia                                              7
+## Austria                                                1
+## Azerbaijan                                             1
+## Bahamas                                                4
+## Bahrain                                                2
+## Bangladesh                                             2
+## Barbados                                               2
+## Belarus                                                3
+## Belgium                                                2
+## Belize                                                 3
+## Benin                                                  1
+## Bhutan                                                 1
+## Bosnia and Herzegovina                                 3
+## Bouvet Island (Bouvetoya)                              2
+## Brazil                                                 3
+## British Indian Ocean Territory (Chagos Archipelago)    1
+## British Virgin Islands                                 1
+## Brunei Darussalam                                      2
+## Bulgaria                                               4
+## Burkina Faso                                           1
+## Burundi                                                2
+## Cambodia                                               2
+## Canada                                                 3
+## Cayman Islands                                         3
+## Central African Republic                               1
+## Chad                                                   2
+## Chile                                                  3
+## China                                                  4
+## Christmas Island                                       4
+## Colombia                                               1
+## Comoros                                                1
+## Congo                                                  3
+## Cook Islands                                           1
+## Costa Rica                                             2
+## Cote d&#39;Ivoire                                          3
+## Cuba                                                   4
+## Cyprus                                                 4
+## Czech Republic                                         4
+## Denmark                                                2
+## Djibouti                                               1
+## Dominica                                               2
+## Dominican Republic                                     2
+## Ecuador                                                2
+## Egypt                                                  3
+## El Salvador                                            4
+## Equatorial Guinea                                      3
+## Eritrea                                                3
+## Estonia                                                1
+## Ethiopia                                               7
+## Falkland Islands (Malvinas)                            2
+## Faroe Islands                                          2
+## Fiji                                                   3
+## Finland                                                1
+## France                                                 5
+## French Guiana                                          3
+## French Polynesia                                       1
+## French Southern Territories                            1
+## Gambia                                                 1
+## Georgia                                                2
+## Germany                                                1
+## Ghana                                                  2
+## Greece                                                 3
+## Greenland                                              1
+## Grenada                                                2
+## Guadeloupe                                             1
+## Guam                                                   2
+## Guatemala                                              3
+## Guernsey                                               2
+## Guinea                                                 2
+## Guinea-Bissau                                          1
+## Guyana                                                 3
+## Haiti                                                  1
+## Heard Island and McDonald Islands                      2
+## Holy See (Vatican City State)                          1
+## Honduras                                               2
+## Hong Kong                                              4
+## Hungary                                                5
+## Iceland                                                1
+## Indonesia                                              4
+## Iran                                                   3
+## Ireland                                                1
+## Isle of Man                                            1
+## Israel                                                 2
+## Italy                                                  1
+## Jamaica                                                2
+## Japan                                                  2
+## Jersey                                                 4
+## Kazakhstan                                             2
+## Kenya                                                  4
+## Kiribati                                               1
+## Korea                                                  3
+## Kuwait                                                 1
+## Kyrgyz Republic                                        1
+## Lao People&#39;s Democratic Republic                       2
+## Latvia                                                 4
+## Lebanon                                                4
+## Liberia                                                6
+## Libyan Arab Jamahiriya                                 2
+## Liechtenstein                                          6
+## Lithuania                                              3
+## Luxembourg                                             3
+## Macao                                                  3
+## Macedonia                                              1
+## Madagascar                                             2
+## Malawi                                                 2
+## Maldives                                               2
+## Mali                                                   1
+## Malta                                                  3
+## Marshall Islands                                       1
+## Martinique                                             3
+## Mauritania                                             1
+## Mauritius                                              1
+## Mayotte                                                5
+## Mexico                                                 4
+## Micronesia                                             4
+## Moldova                                                2
+## Monaco                                                 1
+## Mongolia                                               4
+## Montenegro                                             2
+## Montserrat                                             1
+## Morocco                                                1
+## Myanmar                                                1
+## Namibia                                                1
+## Nauru                                                  1
+## Netherlands                                            3
+## Netherlands Antilles                                   2
+## New Caledonia                                          2
+## New Zealand                                            2
+## Niger                                                  2
+## Norfolk Island                                         2
+## Northern Mariana Islands                               2
+## Norway                                                 1
+## Pakistan                                               1
+## Palau                                                  2
+## Palestinian Territory                                  2
+## Papua New Guinea                                       3
+## Paraguay                                               1
+## Peru                                                   5
+## Philippines                                            3
+## Pitcairn Islands                                       1
+## Poland                                                 3
+## Portugal                                               1
+## Puerto Rico                                            3
+## Qatar                                                  2
+## Romania                                                1
+## Russian Federation                                     1
+## Rwanda                                                 2
+## Saint Barthelemy                                       2
+## Saint Helena                                           2
+## Saint Kitts and Nevis                                  1
+## Saint Lucia                                            1
+## Saint Martin                                           2
+## Saint Pierre and Miquelon                              3
+## Saint Vincent and the Grenadines                       3
+## Samoa                                                  4
+## San Marino                                             1
+## Sao Tome and Principe                                  2
+## Saudi Arabia                                           3
+## Senegal                                                5
+## Serbia                                                 3
+## Seychelles                                             1
+## Sierra Leone                                           2
+## Singapore                                              1
+## Slovenia                                               1
+## Somalia                                                2
+## South Africa                                           6
+## South Georgia and the South Sandwich Islands           1
+## Spain                                                  3
+## Suriname                                               1
+## Svalbard &amp; Jan Mayen Islands                           4
+## Sweden                                                 1
+## Switzerland                                            3
+## Syrian Arab Republic                                   1
+## Taiwan                                                 4
+## Tajikistan                                             2
+## Tanzania                                               1
+## Thailand                                               2
+## Timor-Leste                                            1
+## Togo                                                   1
+## Tokelau                                                3
+## Tonga                                                  2
+## Trinidad and Tobago                                    2
+## Tunisia                                                1
+## Turkey                                                 7
+## Turkmenistan                                           2
+## Turks and Caicos Islands                               3
+## Tuvalu                                                 3
+## Uganda                                                 4
+## Ukraine                                                1
+## United Arab Emirates                                   3
+## United Kingdom                                         2
+## United States Minor Outlying Islands                   2
+## United States of America                               3
+## United States Virgin Islands                           2
+## Uruguay                                                1
+## Uzbekistan                                             1
+## Vanuatu                                                1
+## Venezuela                                              3
+## Vietnam                                                2
+## Wallis and Futuna                                      1
+## Western Sahara                                         4
+## Yemen                                                  2
+## Zambia                                                 3
+## Zimbabwe                                               4</code></pre>
+<pre class="r"><code># Its evident that Afghanistan,France,Hungary, Turkey and other countries with a frequency count greater than five can be a priority while displaying ads</code></pre>
 </div>
 </div>
 <div id="findings-and-recomendations" class="section level2">
 <h2>Findings and Recomendations</h2>
+<div id="based-on-the-findings-from-our-data-we-get-to-see-that." class="section level3">
+<h3>Based on the findings from our data we get to see that.</h3>
+<div id="non-males-are-more-likely-to-click-into-an-add-as-compared-to-males." class="section level4">
+<h4>* Non-Males are more likely to click into an add as compared to males.</h4>
+</div>
+<div id="countries-that-have-a-higher-count-include-bt-are-not-limited-to-australiaturkeyfrance-hungary-etc." class="section level4">
+<h4>* Countries that have a higher count include bt are not limited to Australia,Turkey,France, Hungary etc.</h4>
+</div>
+<div id="internet-usage-is-inversly-proportional-to-add-clicks-.-this-can-however-be-challenged-by-checking-the-statistical-significance-of-that-finding." class="section level4">
+<h4>* Internet usage is inversly proportional to add clicks . This can however be challenged by checking the statistical significance of that finding.</h4>
+</div>
+<div id="ad-clicks-are-also-inversly-proportional-to-time-spent-on-site.-i-can-cahllenge-this-by-performing-a-hypothesis-testing-on-this-findings-to-proove-its-statistical-significance." class="section level4">
+<h4>* Ad clicks are also inversly proportional to time spent on site. I can cahllenge this by performing a hypothesis testing on this findings to proove its statistical significance.</h4>
+</div>
+<div id="the-age-that-is-more-likely-to-click-an-ad-is-between-approximately-35-and-45-yrs." class="section level4">
+<h4>* The age that is more likely to click an ad is between approximately 35 and 45 yrs.</h4>
+</div>
+<div id="the-area-income-that-is-likely-to-click-in-an-add-fall-between-approximately-40000-and-59000-." class="section level4">
+<h4>* The area income that is likely to click in an add fall between approximately 40,000 and 59,000 .</h4>
+</div>
+<div id="this-can-be-challenged-by-looking-deeper-into-these-groups-and-assessing-whether-the-extent-of-influemce-our-outliers-regarded-as-legitimate-data-points-had-on-the-analysis." class="section level4">
+<h4>* This can be challenged by looking deeper into these groups and assessing whether the extent of influemce our outliers regarded as legitimate data points had on the analysis.</h4>
+</div>
+</div>
 </div>
 
 
